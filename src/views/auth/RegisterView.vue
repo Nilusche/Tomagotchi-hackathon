@@ -3,7 +3,7 @@
     <div class=" bg-cblack-100  text-white md:shadow-lg shadow-none rounded p-6 px-32" >
         <div class="flex flex-col items-center space-y-3">
             <img class="hidden lg:block h-8 w-auto"  src="../../assets/logo.png" alt="Workflow">
-            <p class="text-2xl font-bold">Playlist Sync</p>
+            <p class="text-2xl font-bold">Name</p>
             <span class="text-2xl font-semi-bold leading-normal" >Register</span>
         </div>
         <form class="my-8" @submit.prevent="handleSignup">

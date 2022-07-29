@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import {projectAuth} from '../firebase/config.js'
 import Register from '../views/auth/RegisterView.vue'
 import Login from '../views/auth/LoginView.vue'
+import Profile from '../views/ProfileView.vue'
 const requireAuth = (to, from , next) => {
     let user = projectAuth.currentUser;
     if(!user){
@@ -33,6 +34,11 @@ const routes = [
     component: Login,
 
 
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: Profile,
   },
   {
     path: '/register',
