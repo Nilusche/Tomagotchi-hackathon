@@ -27,6 +27,7 @@ module.exports = {
     themes: ["garden"],
   },
    plugins: [
+    require("@tailwindcss/typography"),
     require("daisyui")
   ],
 }

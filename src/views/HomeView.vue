@@ -15,20 +15,33 @@
 <a id="light-fact-2" href="#lightfact2" class="btn hidden">open modal</a>
   <div class="modal" id="lightfact2">
   <div class="modal-box">
-    <h3 class="font-bold text-lg">Not enough sunlight ...🍅</h3>
+    <h3 class="font-bold text-lg">Not enough sunlight...🍅</h3>
     <p class="py-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, consectetur?.</p>
     <div class="modal-action">
      <a href="#" class="btn">OK!</a>
     </div>
   </div>
 </div>
+<!--Nutrient Fact 1-->
+<a id="nutrient-fact-1" href="#nutrientfact1" class="btn hidden">open modal</a>
+  <div class="modal" id="nutrientfact1">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Too many Nutrients...🍅</h3>
+    <p class="py-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, consectetur?.</p>
+    <div class="modal-action">
+     <a href="#" class="btn">OK!</a>
+    </div>
+  </div>
+</div>
+
     <div :class="`p-2 bg-cyellow-100 h-96 w-screen flex justify-center csky-${light}`">
       <span class=" text-2xl flex justify-center h-10">
         <span class="bg-primary text-white  rounded-lg p-1" >{{checkTime(h)}}:{{checkTime(m)}}</span>
       </span>
       
       <img :src="require(`@/assets/plants/plants-${stage}.png`)" class=" object-none absolute  top-20 hover:cursor-pointer" @click="harvest" alt="" style="z-index:20">
-      <img src="@/assets/watering.gif" alt="" class="absolute w-16  top-20 hover:cursor-pointer hidden" style="z-index:30">   
+      <img ref="wateringcan" src="@/assets/watering.gif" alt="" class="absolute w-20  top-20 hover:cursor-pointer hidden" style="z-index:30">   
+      <img ref="fertilizer" src="@/assets/fertilizer.gif" alt="" class="absolute w-20  top-20 hover:cursor-pointer hidden" style="z-index:40">   
     </div>
     <div class="p-2 h-24 bg-cbrown-100 flex justify-center ">
      
@@ -63,14 +76,16 @@
       <div class="flex">
         <img src="../assets/nutrient.png" class="object-none"/>
         <div class="flex flex-grow flex-col mr-3">
-          <input type="range" min="0" max="10" v-model="nutrient" class="range ml-2 mt-2 mr-2 bg-primary" step="1"/>
+          <input type="range" min="0" max="10" v-model="nutrient" class="range ml-2 mt-2 mr-2 bg-primary" @change="handleNutrientChange" step="1"/>
           <div class="w-full flex justify-center text-md px-2 ml-2">
             <span>{{nutrient}} nutrient</span>
           </div>
         </div>
         
       </div>
+      <div class="text-center btn btn-secondary flex-grow mt-3" @click="handleQuiz">Quiz me</div>
     </div>
+  
  </div>
  
  
@@ -133,6 +148,25 @@ export default {
         this.toggleLightFact('light-fact-2');
       }
     },
+    handleWaterChange(){
+      setTimeout(()=>{
+        this.$refs.wateringcan.classList.toggle('hidden');
+      },2500);
+      this.$refs.wateringcan.classList.toggle('hidden');
+    },
+    handleNutrientChange(){
+      if(this.nutrient>=8){
+        this.toggleLightFact('nutrient-fact-1');
+      }else{
+        setTimeout(()=>{
+          this.$refs.fertilizer.classList.toggle('hidden');
+        },2500);
+        this.$refs.fertilizer.classList.toggle('hidden');
+      }
+    },
+    handleQuiz(){
+      
+    },
     async harvest(){
       if(this.stage != 5){
         this.toast.error("Harvest is not available yet");
@@ -143,10 +177,19 @@ export default {
       let harvest = 0;
       await projectFirestore.collection('harvest').doc(getUser().user.value.uid).get().then(doc => {
         if(doc.exists){
-          harvest = doc.data().harvest + 1;
+           projectFirestore.collection('harvest').doc(getUser().user.value.uid).update({
+            harvest: doc.data().harvest+1
+          });
         }else{
           projectFirestore.collection('harvest').doc(getUser().user.value.uid).set({
             harvest:1
+          })
+        }
+      });
+      await projectFirestore.collection('user_plant').doc(getUser().user.value.uid).get().then(doc => {
+        if(doc.exists){
+          projectFirestore.collection('user_plant').doc(getUser().user.value.uid).update({
+            stage: 1,
           })
         }
       });
