@@ -23,8 +23,7 @@
         <!-- Sidebar content here -->
         <li><router-link for="my-drawer" to="/" @click="handleclick">Home</router-link></li>
         <li><router-link for="my-drawer" to="/profile" @click="handleclick">Profile</router-link></li>
-        <li><a>Sidebar Item 2</a></li>
-        
+        <li><router-link for="my-drawer" to="/" @click="handleclick">Check your Plants!</router-link></li>   
         </ul>
     </div>
 </div> 

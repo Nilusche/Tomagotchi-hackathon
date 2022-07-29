@@ -27,7 +27,8 @@
         <span class="bg-primary text-white  rounded-lg p-1" >{{checkTime(h)}}:{{checkTime(m)}}</span>
       </span>
       
-      <img :src="require(`@/assets/plants/plants-${stage}.png`)" class=" object-none absolute  top-20" alt="" style="z-index:20">
+      <img :src="require(`@/assets/plants/plants-${stage}.png`)" class=" object-none absolute  top-20 hover:cursor-pointer" @click="harvest" alt="" style="z-index:20">
+      <img src="@/assets/watering.gif" alt="" class="absolute w-16  top-20 hover:cursor-pointer hidden" style="z-index:30">   
     </div>
     <div class="p-2 h-24 bg-cbrown-100 flex justify-center ">
      
@@ -52,7 +53,7 @@
      <div class="flex">
         <img src="../assets/fallen.png" class="object-none"/>
         <div class="flex flex-grow flex-col mr-3">
-          <input type="range" min="0" max="10" v-model="water" class="range ml-2 mt-2 mr-2 bg-info" step="1" />
+          <input type="range" min="0" max="10" v-model="water" class="range ml-2 mt-2 mr-2 bg-info" step="1" @change="handleWaterChange"/>
           <div class="w-full flex justify-center text-md px-2 ml-2">
             <span>{{water}} liter</span>
           </div>
@@ -79,8 +80,15 @@
 // @ is an alias to /src
 import { projectFirestore } from '@/firebase/config';
 import getUser from '@/composables/getUser';
+import tomatoquiz from '@/assets/questions.json';
+import { useToast } from "vue-toastification";
 export default {
   name: 'HomeView',
+  setup() {
+      // Get toast interface
+      const toast = useToast();
+      return { toast }
+  },
   data(){
     return {
       stage : 1,
@@ -109,7 +117,7 @@ export default {
           
         }
 
-        setTimeout(this.startTime, 300);
+        setTimeout(this.startTime, 700);
     },
     checkTime(i) {
       if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
@@ -125,6 +133,24 @@ export default {
         this.toggleLightFact('light-fact-2');
       }
     },
+    async harvest(){
+      if(this.stage != 5){
+        this.toast.error("Harvest is not available yet");
+        return;
+      }
+      this.stage = 1;
+      this.toast.success("Congrats! You harvested your crops");
+      let harvest = 0;
+      await projectFirestore.collection('harvest').doc(getUser().user.value.uid).get().then(doc => {
+        if(doc.exists){
+          harvest = doc.data().harvest + 1;
+        }else{
+          projectFirestore.collection('harvest').doc(getUser().user.value.uid).set({
+            harvest:1
+          })
+        }
+      });
+    }
   },
   async mounted(){
     let user = getUser();
@@ -135,12 +161,14 @@ export default {
         this.nutrient = doc.data().plantdata.nutrient;
         this.h = doc.data().timedata.h;
         this.m = doc.data().timedata.m;
+        this.stage = doc.data().plantdata.stage;
       }else{
         this.light = 50;
         this.water = 2;
         this.nutrient = 0;
         this.h = 0;
         this.m = 0;
+        this.stage = 0;
       }
     })
     this.startTime();
@@ -150,12 +178,14 @@ export default {
     let plantdata = {
       light: this.light,
       water: this.water,
-      nutrient: this.nutrient
+      nutrient: this.nutrient,
+      stage: this.stage
     }
     let timedata= {
       h: this.h,
       m: this.m
     }
+
 
    let  user_plant = {
       user: user.user.value.uid,
