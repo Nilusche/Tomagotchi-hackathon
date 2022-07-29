@@ -26,7 +26,8 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    beforeEnter: requireAuth
   },
   {
     path: '/login',

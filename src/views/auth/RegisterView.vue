@@ -1,6 +1,6 @@
 <template>
- <div class="h-screen relative flex flex-col justify-center items-center">
-    <div class=" bg-cblack-100  text-white md:shadow-lg shadow-none rounded p-6 px-32" >
+<div class="absolute top-12 flex justify-center " style="z-index: -1;">
+    <div class=" bg-cblack-100  text-white md:shadow-lg shadow-none rounded p-6 w-screen mt-4" >
         <div class="flex flex-col items-center space-y-3">
             <img class="hidden lg:block h-8 w-auto"  src="../../assets/logo.png" alt="Workflow">
             <p class="text-2xl font-bold">Name</p>
@@ -27,12 +27,12 @@
                     <router-link to="/login" class="text-sm font-bold text-clightgreen">Sign in instead?</router-link>
                 </div>
                 <div class="text-sm flex justify-between items-center">
-                    <button class="py-2 px-6 rounded text-white btn bg-cgreen-300 hover:bg-cgreen-100">Register</button>
+                    <button class="py-2 px-6 rounded text-white btn btn-primary hover:bg-cgreen-300">Register</button>
                 </div>
             </div>
         </form>
     </div>
-</div> 
+</div>
 </template>
 
 <script setup>

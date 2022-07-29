@@ -2,7 +2,7 @@
 <div class="absolute top-12 " style="z-index: -1;">
 <!--LightFact1-->
 <a id="light-fact-1" href="#lightfact1" class="btn hidden">open modal</a>
-  <div class="modal" id="lightfact1">
+<div class="modal" id="lightfact1">
   <div class="modal-box">
     <h3 class="font-bold text-lg">Beware of the sunlight!🍅</h3>
     <p class="py-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, consectetur?.</p>
@@ -13,7 +13,7 @@
 </div>
 <!--LightFact2-->
 <a id="light-fact-2" href="#lightfact2" class="btn hidden">open modal</a>
-  <div class="modal" id="lightfact2">
+<div class="modal" id="lightfact2">
   <div class="modal-box">
     <h3 class="font-bold text-lg">Not enough sunlight...🍅</h3>
     <p class="py-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, consectetur?.</p>
@@ -24,7 +24,7 @@
 </div>
 <!--Nutrient Fact 1-->
 <a id="nutrient-fact-1" href="#nutrientfact1" class="btn hidden">open modal</a>
-  <div class="modal" id="nutrientfact1">
+<div class="modal" id="nutrientfact1">
   <div class="modal-box">
     <h3 class="font-bold text-lg">Too many Nutrients...🍅</h3>
     <p class="py-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, consectetur?.</p>
@@ -34,11 +34,49 @@
   </div>
 </div>
 
+<!--Quiz -->
+<a id="quiz" href="#quizmenu" class="btn hidden">open modal</a>
+<div class="modal" id="quizmenu">
+  <div class="modal-box">
+  <h3 class="font-bold text-lg">Start Quiz</h3>
+    <p class="py-4">Get ready to answer some questions</p>
+    <div class="modal-action">
+     <a v-if="cards.length==0" href="#noquiz" class="btn">START</a>
+     <a v-else href="#quiz-0" class="btn">START</a>
+    </div>
+  </div>
+</div>
+<!-- No Questions-->
+<div class="modal" id="noquiz">
+  <div class="modal-box">
+      <h3 class="font-bold text-lg">Good Job🍅</h3>
+      <p class="py-4">There are no Question for you Today</p>
+      <div class="modal-action">
+      <a href="#" class="btn">OK!</a>
+      </div>
+  </div>
+</div>
+
+<!-- Quizquestions-->
+<div  v-for="(item, index) in cards" :key="index">
+  <div class="modal" :id="`quiz-${index}`">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">{{item.question}}</h3>
+        <p class="py-4 hidden" :id="`p${index}`">{{item.answer}}</p>
+        <div class="modal-action">
+          {{cards.length}}
+        <a href="#" class="btn btn-error">End</a>
+        <span class="btn" @click="togglecard(index)">Show answer</span>
+        <a :href="`#quiz-${parseInt(index)+1}`" class="btn">Next</a>
+        
+        </div>
+    </div>
+  </div>
+</div>
     <div :class="`p-2 bg-cyellow-100 h-96 w-screen flex justify-center csky-${light}`">
       <span class=" text-2xl flex justify-center h-10">
         <span class="bg-primary text-white  rounded-lg p-1" >{{checkTime(h)}}:{{checkTime(m)}}</span>
       </span>
-      
       <img :src="require(`@/assets/plants/plants-${stage}.png`)" class=" object-none absolute  top-20 hover:cursor-pointer" @click="harvest" alt="" style="z-index:20">
       <img ref="wateringcan" src="@/assets/watering.gif" alt="" class="absolute w-20  top-20 hover:cursor-pointer hidden" style="z-index:30">   
       <img ref="fertilizer" src="@/assets/fertilizer.gif" alt="" class="absolute w-20  top-20 hover:cursor-pointer hidden" style="z-index:40">   
@@ -83,7 +121,7 @@
         </div>
         
       </div>
-      <div class="text-center btn btn-secondary flex-grow mt-3" @click="handleQuiz">Quiz me</div>
+      <div class="text-center btn btn-secondary flex-grow mt-3" @click="handleQuiz">Learn Flashcards</div>
     </div>
   
  </div>
@@ -112,7 +150,8 @@ export default {
       m: 0,
       light:50,
       water: 2,
-      nutrient:0
+      nutrient:0,
+      cards: [],
     }
   },
   methods:{
@@ -133,6 +172,9 @@ export default {
         }
 
         setTimeout(this.startTime, 700);
+    },
+    togglecard(index){
+      document.getElementById(`p${index}`).classList.toggle('hidden');
     },
     checkTime(i) {
       if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
@@ -164,8 +206,9 @@ export default {
         this.$refs.fertilizer.classList.toggle('hidden');
       }
     },
-    handleQuiz(){
-      
+    async handleQuiz(){
+      console.log(this.cards)
+      this.toggleLightFact('quiz')
     },
     async harvest(){
       if(this.stage != 5){
@@ -215,6 +258,31 @@ export default {
       }
     })
     this.startTime();
+
+    var items= tomatoquiz.tomatoquiz;
+      const today = new Date().getTime();
+
+      await items.forEach((item)=>{
+        item.time=today;
+      });
+      
+
+      let docnotexist = await projectFirestore.collection('tomatoquiz').doc(getUser().user.value.uid).get().then(doc => {
+        if(!doc.exists){
+           return true
+        }
+        return false
+      })
+
+      if(docnotexist){
+        await projectFirestore.collection('tomatoquiz').doc(getUser().user.value.uid).set({...items,date:today});
+      }
+
+      
+
+      this.cards= await projectFirestore.collection('tomatoquiz').doc(getUser().user.value.uid).get().then(doc => {
+        return doc.data();
+      })
   },
   async unmounted(){
     let user = getUser();

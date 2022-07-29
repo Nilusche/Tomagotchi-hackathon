@@ -1,18 +1,37 @@
 {
     "tomatoquiz": [
     {
+        "id": 1,
         "question":"I have blossom rot on my tomatoes. How can I get rid of it?",
         "answer": "The likely reason is because the plant can't take the calcium out of the soil fast enough to keep up with growth, or stress has caused the plant to be unable to process the calcium. The key to averting BER is to keep the plant from experiencing stress."
     },
     {
+        "id": 2,
         "question": "How do i get rid of tomato plant diseases?",
         "answer": "The key to averting BER is to keep the plant from experiencing stress.It's important to identify the disease in order to treat it. Tomato diseases generally fall into three categories: fungal, viral or bacterial diseases, which can only be diagnosed through lab testing. It is more important for the gardener to recognize symptoms and categories of disease to learn how to treat it"
     },
     {
+        "id": 3,
         "question": "What do i do when my tomatoes are yellowing?",
         "answer": "If you have some yellowing leaves on your tomato, don't panic. It may just be the normal maturing of the plant. As the plant gets older and finishes up fruiting, lower leaves may yellow because they are not taking up enough nutrients or they aren’t getting enough sun. A lack of nitrogen in the soil may also result in yellowing./"
 
+    },
+    {
+        "id": 4,
+        "question": "Can your tomatoes survive if you planted them too early in the season?",
+        "answer": "They might survive if you keep the young plants warm with a cloche or other protective cover. Tomatoes are not frost hardy and will die if exposed to 32 ˚F (0˚C) without protection. It depends on what sort of temps you are experiencing. Tomatoes can tolerate temperatures down to near freezing, but their growth can be seriously hampered and fruiting delayed if they even suffer temperatures below 50˚C (10˚C), especially if the cold lasts more than a few hours."
+    },
+    {
+        "id": 5,
+        "question": "If I have started my tomatoes from seed indoors, do I need to gradually prepare them for outdoor temperatures?",
+        "answer": "It is important to harden off any tender plants before placing them in the garden by exposing them gradually to the harsh outdoor conditions. Put young plants outside where they will receive morning sun but be protected from wind, and move them inside at night. Continue this for about a week, and then begin to leave them outside on nights when the temperature does not drop below 55˚C (13˚C). After a week or two, the plants should be ready to transplant."
+    },
+    {
+        "id": 6,
+        "question": "If I have started my tomatoes from seed indoors, do I need to gradually prepare them for outdoor temperatures?",
+        "answer": "It is important to harden off any tender plants before placing them in the garden by exposing them gradually to the harsh outdoor conditions. Put young plants outside where they will receive morning sun but be protected from wind, and move them inside at night. Continue this for about a week, and then begin to leave them outside on nights when the temperature does not drop below 55˚C (13˚C). After a week or two, the plants should be ready to transplant."
     }
+]
     
-    ]
+
 }

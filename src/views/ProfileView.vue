@@ -1,6 +1,6 @@
 <template>
 <div class="absolute top-12">
-  <div class="card  bg-primary text-primary-content w-screen">
+  <div class="card  bg-primary text-primary-content w-screen ">
     <div class="card-body items-center text-center">
       <div class="avatar online">
         <div class="w-24  mask mask-squircle">
@@ -11,7 +11,7 @@
       <p>#Rank 1</p>
       <p>Tomato harvests: {{harvest}}</p>
       <div class="card-actions justify-end">
-        <button class="btn">Buy Now</button>
+        <button class="btn">Show Leaderboard</button>
       </div>
     </div>
   </div> 

@@ -24,6 +24,7 @@
         <li><router-link for="my-drawer" to="/" @click="handleclick">Home</router-link></li>
         <li><router-link for="my-drawer" to="/profile" @click="handleclick">Profile</router-link></li>
         <li><router-link for="my-drawer" to="/" @click="handleclick">Check your Plants!</router-link></li>   
+        <li><router-link for="my-drawer" to="/" class="bg-primary text-white" @click="handleLogout">Logout</router-link></li>   
         </ul>
     </div>
 </div> 
@@ -32,10 +33,13 @@
   
 </template>
 <script setup>
+import useLogout from '@/composables/useLogout.js'
+import getUser from '@/composables/getUser.js'
+
+const {user} = getUser()
 const handleLogout = async () => {
-  router.push('/')
   const res = await useLogout()
-  router.push('/login')
+  document.getElementById('my-drawer').click();
 }
 const handleclick = () => {
   document.getElementById('my-drawer').click();

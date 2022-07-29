@@ -1,6 +1,6 @@
 <template>
- <div class="h-screen relative flex flex-col justify-center items-center">
-    <div class=" bg-cblack-100  text-white md:shadow-lg shadow-none rounded p-10 px-32" >
+<div class="absolute top-12 flex justify-center " style="z-index: -1;">
+    <div class=" bg-cblack-100  text-white md:shadow-lg shadow-none rounded p-10 mt-4 w-screen" >
         <div class="flex flex-col items-center space-y-3">
             <img class="hidden lg:block h-8 w-auto"  src="../../assets/logo.png" alt="Workflow">
             <p class="text-2xl font-bold">Name</p>
@@ -28,7 +28,8 @@
             </div>
         </form>
     </div>
-</div> 
+</div>
+
 </template>
 
 <script setup>
@@ -59,14 +60,14 @@
         .input.filled+.label {
             font-size: .75rem;
             transition: all 0.2s ease-out;
-            top: -1.3rem;
+            top: -1.2rem;
             color: #2a5547;
             padding: 0 5px 0 5px;
             margin: 0 5px 0 5px;
         }
         .label {
             transition: all 0.2s ease-out;
-            top: -0.3rem;
-            left: 0;
+            top: -0.8rem;
+            left: -0.2rem;
         }
 </style>
