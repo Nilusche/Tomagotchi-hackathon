@@ -3,8 +3,8 @@
 
 # Tomagotchi - Gamified Urban Gardening
 This is an App that has been created during a Hackathon in 2022 to solve a problem around Urban Gardening <br>
-<a href="https://hackathon-2bf4c.web.app/">Go to App</a><br>
-
+<a href="https://hackathon-2bf4c.web.app/">Go to App</a> (App developed for mobile Viewpoint).<br>
+Build using Vue and Firebase.
 ![image](https://user-images.githubusercontent.com/73897941/181934591-ad4d4b27-e353-41dc-aa10-357c9c69b6c5.png)
 
 
