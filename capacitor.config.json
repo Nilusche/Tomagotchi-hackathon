@@ -1,0 +1,6 @@
+{
+  "appId": "hackathon.example.com",
+  "appName": "tomatogochi",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
