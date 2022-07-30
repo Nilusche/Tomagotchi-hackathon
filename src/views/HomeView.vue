@@ -171,7 +171,7 @@ export default {
           
         }
 
-        setTimeout(this.startTime, 700);
+        setTimeout(this.startTime, 600);
     },
     togglecard(index){
       document.getElementById(`p${index}`).classList.toggle('hidden');
@@ -207,7 +207,7 @@ export default {
       }
     },
     async handleQuiz(){
-      console.log(this.cards)
+
       this.toggleLightFact('quiz')
     },
     async harvest(){
@@ -218,13 +218,13 @@ export default {
       this.stage = 1;
       this.toast.success("Congrats! You harvested your crops");
       let harvest = 0;
-      await projectFirestore.collection('harvest').doc(getUser().user.value.uid).get().then(doc => {
+      await projectFirestore.collection('users').doc(getUser().user.value.uid).get().then(doc => {
         if(doc.exists){
-           projectFirestore.collection('harvest').doc(getUser().user.value.uid).update({
+           projectFirestore.collection('users').doc(getUser().user.value.uid).update({
             harvest: doc.data().harvest+1
           });
         }else{
-          projectFirestore.collection('harvest').doc(getUser().user.value.uid).set({
+          projectFirestore.collection('users').doc(getUser().user.value.uid).set({
             harvest:1
           })
         }
@@ -254,7 +254,7 @@ export default {
         this.nutrient = 0;
         this.h = 0;
         this.m = 0;
-        this.stage = 0;
+        this.stage = 1;
       }
     })
     this.startTime();

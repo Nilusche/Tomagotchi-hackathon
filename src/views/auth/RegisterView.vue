@@ -39,6 +39,7 @@
 import useSignup from '@/composables/useSignup';
 import { useRouter } from 'vue-router'
 import {ref} from 'vue';
+import { projectFirestore } from '@/firebase/config';
 const router = useRouter();
 const email = ref('');
 const password = ref('');
@@ -52,6 +53,12 @@ const handleSignup = async () => {
     }else{
         router.push('/');
     }
+
+    await projectFirestore.collection('users').doc(res.user.uid).set({
+        name: name.value,
+        email: email.value,
+        harvest:0
+    });
     
 }
 </script>
@@ -66,14 +73,14 @@ const handleSignup = async () => {
         .input.filled+.label {
             font-size: .75rem;
             transition: all 0.2s ease-out;
-            top: -1.3rem;
+            top: -1.2rem;
             color: #2a5547;
             padding: 0 5px 0 5px;
             margin: 0 5px 0 5px;
         }
         .label {
             transition: all 0.2s ease-out;
-            top: -0.3rem;
-            left: 0;
+            top: -0.8rem;
+            left: -0.2rem;
         }
 </style>

@@ -23,8 +23,8 @@
         <!-- Sidebar content here -->
         <li><router-link for="my-drawer" to="/" @click="handleclick">Home</router-link></li>
         <li><router-link for="my-drawer" to="/profile" @click="handleclick">Profile</router-link></li>
-        <li><router-link for="my-drawer" to="/" @click="handleclick">Check your Plants!</router-link></li>   
-        <li><router-link for="my-drawer" to="/" class="bg-primary text-white" @click="handleLogout">Logout</router-link></li>   
+        <li><router-link for="my-drawer" to="/classification" @click="handleclick">Check your Plants!</router-link></li>   
+        <li><span for="my-drawer" class="bg-primary  hover:cursor-pointer text-white" @click="handleLogout">Logout</span></li>   
         </ul>
     </div>
 </div> 
@@ -35,11 +35,13 @@
 <script setup>
 import useLogout from '@/composables/useLogout.js'
 import getUser from '@/composables/getUser.js'
+import { useRouter } from 'vue-router';
 
 const {user} = getUser()
+const router = useRouter()
 const handleLogout = async () => {
   const res = await useLogout()
-  document.getElementById('my-drawer').click();
+  router.push("/login")
 }
 const handleclick = () => {
   document.getElementById('my-drawer').click();

@@ -4,6 +4,9 @@ import {projectAuth} from '../firebase/config.js'
 import Register from '../views/auth/RegisterView.vue'
 import Login from '../views/auth/LoginView.vue'
 import Profile from '../views/ProfileView.vue'
+import Leaderboard from '../views/LeaderboardView.vue'
+import Tensorflow from '../views/TensorflowView.vue'
+
 const requireAuth = (to, from , next) => {
     let user = projectAuth.currentUser;
     if(!user){
@@ -40,12 +43,25 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: Profile,
+    beforeEnter: requireAuth
   },
   {
     path: '/register',
     name: 'register',
     component: Register,
   },
+  {
+    path:'/leaderboard',
+    name:'leaderboard',
+    component:Leaderboard,
+    beforeEnter:requireAuth
+
+  },
+  {
+    path: '/classification',
+    name: 'classification',
+    component: Tensorflow,
+  }
 ]
 
 const router = createRouter({
