@@ -28,6 +28,9 @@
   <div class="modal-box">
     <h3 class="font-bold text-lg">Too many Nutrients...🍅</h3>
     <p class="py-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, consectetur?.</p>
+    <p class="py-4">
+      <img src="../assets/fertilizerfact.gif" alt="">
+    </p>
     <div class="modal-action">
      <a href="#" class="btn">OK!</a>
     </div>

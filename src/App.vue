@@ -22,8 +22,7 @@
         <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
         <!-- Sidebar content here -->
         <li><router-link for="my-drawer" to="/" @click="handleclick">Home</router-link></li>
-        <li><router-link for="my-drawer" to="/profile" @click="handleclick">Profile</router-link></li>
-        <li><router-link for="my-drawer" to="/classification" @click="handleclick">Check your Plants!</router-link></li>   
+        <li><router-link for="my-drawer" to="/profile" @click="handleclick">Profile</router-link></li> 
         <li><span for="my-drawer" class="bg-primary  hover:cursor-pointer text-white" @click="handleLogout">Logout</span></li>   
         </ul>
     </div>
