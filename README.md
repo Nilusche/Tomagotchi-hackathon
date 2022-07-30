@@ -10,8 +10,8 @@ Build using Vue and Firebase.
 
 
 ## Problem
-Many townish Folks don't have the necessary Know How or facilities to grown their own Food in a garden.<br>
-While we were discussing we identified a great lack of resources to teach or learn about gardening without overindulging yourself in blogposts or other means of information. <br>
+Many townish Folks don't have the necessary Know How or facilities to grow their own Food in a garden.<br>
+While we were discussing, we identified a great lack of a great concept to teach or learn about gardening without overindulging yourself in blogposts or other means of information. <br>
 We need something to engage the user to learn with a different approach <br>
 
 ##Solution
