@@ -4,10 +4,16 @@
   </div>
 </template>
 
-<script>
-export default {
+<script setup>
+import * as tf from '@tensorflow/tfjs';
+import {onMounted} from 'vue';
 
-}
+onMounted(async () => {
+
+    const model = await tf.loadLayersModel("../assets/model/model.json"); 
+    console.log(model)
+});
+
 </script>
 
 <style>
