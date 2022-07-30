@@ -12,10 +12,10 @@ Build using Vue and Firebase.
 ## Problem
 Many townish Folks don't have the necessary Know How or facilities to grow their own Food in a garden.<br>
 While we were discussing, we identified a great lack of a great concept to teach or learn about gardening without overindulging yourself in blogposts or other means of information. <br>
-We need something to engage the user to learn with a different approach <br>
+We need something to engage the user to learn with a different approach. <br>
 
 ##Solution
-We created an App that just like with a real Tamagotchi, you learn how to grow your own virtual plant. <br>
+We created an App that, just like with a real Tamagotchi, you learn how to grow your own virtual plant. <br>
 In doing so you can connect with friends and compete with other players.<br>
 Additionally we use flashcards to use the very technique of learning "Active Recall and Spaced Repetition" so the user can actually learn effortless.<br>
 
