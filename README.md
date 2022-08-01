@@ -17,7 +17,7 @@ We need something to engage the user to learn with a different approach. <br>
 ## Solution
 We created an App that, just like with a real Tamagotchi, you learn how to grow your own virtual plant. <br>
 In doing so you can connect with friends and compete with other players.<br>
-Additionally we use flashcards to use the very technique of learning "Active Recall and Spaced Repetition" so the user can actually learn effortless.<br>
+Additionally we use flashcards to use the very famous technique of learning "Active Recall and Spaced Repetition" so the user can actually learn effortless.<br>
 
 ## Further Development Possibilities
 Right now we do not have the right Tomatoplant-Facts or the possibility to grow other plants.<br>
