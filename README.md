@@ -1,5 +1,3 @@
-![image](https://user-images.githubusercontent.com/73897941/181934603-eea5b35d-c7ed-42ce-af7e-524873de10be.png#center)
-
 
 # Tomatogotchi - Gamified Urban Gardening
 This is an App that has been created during a Hackathon in 2022 to solve a problem around Urban Gardening <br>
